@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("USERDTO : " + userDTO.toString());
+//		System.out.println("USERDTO : " + userDTO.toString());
 		return userDTO;
 	}
 
@@ -110,7 +110,7 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 
-		System.out.println("UserDTO By Username : " + userDTO.toString());
+//		System.out.println("UserDTO By Username : " + userDTO.toString());
 		return userDTO;
 	}
 
@@ -131,6 +131,7 @@ public class UserDAOImpl implements UserDAO {
 					userDTO.setEmail(rs.getString("email"));
 					userDTO.setCreatedAt(rs.getString("created_at"));
 					list.add(userDTO);
+					
 				} 
 			} catch (Exception e) {
 				e.printStackTrace();

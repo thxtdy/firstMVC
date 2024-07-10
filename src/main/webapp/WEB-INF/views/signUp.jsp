@@ -1,3 +1,4 @@
+<%@page import="com.tenco.model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
 	<h2>회원가입</h2>
 	<!-- 에러 메시지 출력  -->
 	<%
+		UserDTO dto = new UserDTO();
 		/* String errorMessage = (String)request.getAttribute("Message"); */
 		String errorMessage = (String)request.getParameter("message");
 		if(errorMessage != null ){
@@ -29,6 +31,7 @@
 	
 		<label for = "email">이메일 : </label>
 		<input type = "text" id = "email" name="email" value="jungle@gmail.com">
+		<input type = "hidden" id = "id" name="id" value= "<%= dto.getId() %>">
 		<button type="submit">회원가입</button>  
 	
 	</form>

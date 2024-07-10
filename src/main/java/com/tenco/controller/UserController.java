@@ -114,7 +114,7 @@ public class UserController extends HttpServlet {
 	private void signUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 인증 검사 필요 없는 기능 
-		
+		int userid =  Integer.parseInt(request.getParameter("id")); 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -130,11 +130,11 @@ public class UserController extends HttpServlet {
 		// 방어적 코드 작성 (password) - 생략 
 		// 방어적 코드 작성 (email) - 생략 
 		UserDTO userDTO = UserDTO.builder()
+				.id(userid)
 				.userName(username)
 				.password(password)
 				.email(email)
 				.build();
-		
 		// int resultRowCount = 0;
 		int resultRowCount = userDAO.addUser(userDTO);
 		System.out.println("resultRowCount :" + resultRowCount);

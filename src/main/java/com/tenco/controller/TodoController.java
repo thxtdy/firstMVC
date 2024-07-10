@@ -21,7 +21,6 @@ import com.tenco.model.UserDTO;
 public class TodoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TodoDAO todoDAO;
-	private UserDTO user;
        
     public TodoController() {
     	todoDAO = new TodoDAOImpl();
@@ -60,7 +59,7 @@ public class TodoController extends HttpServlet {
 		// List<TodoDTO> list  : TodoDAOImpl --> 사용자별 todoList Select 
 		
 		// todoList.jsp 페이지로 내부에서 이동 처리
-		List<TodoDTO> todolist =  todoDAO.getTodosByUserId(user.getId());
+		List<TodoDTO> todolist =  todoDAO.getTodosByUserId(principal.getId());
 		request.setAttribute("todoList", todolist);
 		System.out.println(todolist.toString());
 		request.getRequestDispatcher("/WEB-INF/views/todoList.jsp").forward(request, response);
@@ -83,6 +82,9 @@ public class TodoController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/views/todoForm.jsp").forward(request, response);
 		
 	}
+	
+	// ================================================================================================
+	// ================================================================================================
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getPathInfo();
@@ -108,6 +110,7 @@ public class TodoController extends HttpServlet {
 	private void addTodo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		UserDTO principal =  (UserDTO) session.getAttribute("principal");
+		
 		// principal -- null 이라면 -> 로그인 페이지 이동 처리
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
@@ -124,7 +127,8 @@ public class TodoController extends HttpServlet {
 				.dueDate(dueDate)
 				.completed(completed)
 				.build();
-		todoDAO.addTodo(todoDTO, user.getId());
+		request.getAttribute("userid");
+		todoDAO.addTodo(todoDTO, principal.getId());
 		List<TodoDTO> list = new ArrayList<TodoDTO>();
 		request.setAttribute("todosList", list);
 		// http://localhost:8080/mvc/todo/list
