@@ -26,6 +26,9 @@ public class TestController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		String action = request.getPathInfo();
 		switch (action) {
 		case "/byId":
