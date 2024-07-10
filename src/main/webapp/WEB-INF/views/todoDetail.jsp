@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>todo상세보기</h1>
 </body>
 </html>

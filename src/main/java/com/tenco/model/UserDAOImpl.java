@@ -29,32 +29,21 @@ public class UserDAOImpl implements UserDAO {
 		int resultCount = 0;
 
 		String sql = " INSERT INTO users(username, password, email) VALUES (?,?,?) ";
-		String check = " SELECT username from users where username = ? ";
+	
 		try (Connection conn = dataSource.getConnection()) {
 			// 트랜잭션 시작
 			conn.setAutoCommit(false);
-			
-			// 중복 username Exception 처리
-			PreparedStatement checkptmt = conn.prepareStatement(check);
-			checkptmt.setString(1, userDTO.getUserName());
-			ResultSet rs =  checkptmt.executeQuery();
-			if(rs.next()) {
-				conn.rollback();
-			} else {
+	
 				try (PreparedStatement ptmt = conn.prepareStatement(sql)) {
 					ptmt.setString(1, userDTO.getUserName());
 					ptmt.setString(2, userDTO.getPassword());
 					ptmt.setString(3, userDTO.getEmail());
 					resultCount = ptmt.executeUpdate();
-					
 					conn.commit();
 				} catch (Exception e) {
 					conn.rollback();
 					e.printStackTrace();
 				}
-				
-			}
-		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,33 +89,28 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserDTO getUserByUsername(String username) {
-		String query = "SELECT * FROM users where username = ? ";
+		String sql = " select * from users where username = ? ";
 		UserDTO userDTO = null;
-		try (Connection conn = dataSource.getConnection()){
-			conn.setAutoCommit(false);
-			
-			try (PreparedStatement ptmt = conn.prepareStatement(query)){
-				ptmt.setString(1, userDTO.getUserName());
-				ResultSet rs =  ptmt.executeQuery();
-				if(rs.next()) {
+		try (Connection conn = dataSource.getConnection()) {
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, username);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
 					userDTO = new UserDTO();
 					userDTO.setId(rs.getInt("id"));
 					userDTO.setUserName(rs.getString("username"));
 					userDTO.setPassword(rs.getString("password"));
 					userDTO.setEmail(rs.getString("email"));
 					userDTO.setCreatedAt(rs.getString("created_at"));
-					
-				} else {
-					conn.rollback();
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Username : " + userDTO.toString());
+
+		System.out.println("UserDTO By Username : " + userDTO.toString());
 		return userDTO;
 	}
 
