@@ -1,1 +1,41 @@
 @charset "UTF-8";
+       body {
+            font-family: 'Nanum Gothic', sans-serif; /* 폰트: 나눔고딕 */
+            background-color: #f0f8f6; /* 주 색상: 파스텔톤 중 초록색 */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: white; /* 보조 색상: 흰색 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333; /* 글자 색상 */
+        }
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50; /* 버튼 색상: 파스텔톤 중 초록색 */
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* 버튼 호버 색상 */
+        }

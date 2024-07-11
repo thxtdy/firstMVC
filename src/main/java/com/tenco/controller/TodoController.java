@@ -61,17 +61,14 @@ public class TodoController extends HttpServlet {
 		}
 
 	}
-
 	/**
 	 * todo 삭제 기능
-	 * 
 	 * @param request
 	 * @param response
 	 * @param principalId
 	 * @throws IOException
 	 */
-	private void deleteTodo(HttpServletRequest request, HttpServletResponse response, int principalId)
-			throws IOException {
+	private void deleteTodo(HttpServletRequest request, HttpServletResponse response, int principalId) throws IOException {
 		try {
 			int todoId = Integer.parseInt(request.getParameter("id"));
 			todoDAO.deleteTodo(todoId, principalId);
