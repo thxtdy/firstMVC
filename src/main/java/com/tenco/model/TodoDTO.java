@@ -18,4 +18,11 @@ public class TodoDTO {
 	private String description;
 	private String dueDate;
 	private String completed;
+	
+	// completed 데이터를 변환하는 메소드를 만들 것이다.
+	public String completedToString() {
+		
+		return completed.equals("1") ? "true" : "false";
+	}
+	
 }

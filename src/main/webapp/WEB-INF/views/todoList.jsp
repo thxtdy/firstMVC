@@ -38,10 +38,10 @@
 			<td><%= todo.getTitle() %></td>
 			<td><%= todo.getDescription() %></td>
 			<td><%= todo.getDueDate() %></td>
-			<td><%= todo.getCompleted() == null ? "미완료" : "완료" %></td>
+			<td><%= todo.completedToString() == "true" ? "완료" : "미완료"%> </td>
 			<td>
 				<a href="detail?id=<%=todo.getId()%>">상세보기</a>
-				<form action="delete">
+				<form action="delete"method = "GET">
 					<input type="hidden" name="id" value="<%=todo.getId() %>">
 					<button type="submit">삭제</button>
 				</form>

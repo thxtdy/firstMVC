@@ -21,7 +21,7 @@
 	<!-- 절대 경로 -->
 	<form action="/mvc/user/signIn" method = "post">
 		<label for = "username">사용자 이름 : </label>
-		<input type = "text" id = "username" name="username" value="니달리">  
+		<input type = "text" id = "username" name="username" value="박태현">  
 	
 		<label for = "password">비밀번호 : </label>
 		<input type = "password" id = "password" name="password" value="asd123">  
