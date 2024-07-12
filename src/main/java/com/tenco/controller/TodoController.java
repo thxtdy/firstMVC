@@ -94,7 +94,7 @@ public class TodoController extends HttpServlet {
 			TodoDTO dto = todoDAO.getTodoById(todoId);
 			if(dto.getUserId() == principalId) {
 				request.setAttribute("todo", dto);
-				request.getRequestDispatcher("/WEB-INF/views/todoDetail.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/todoDetails.jsp").forward(request, response);
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();

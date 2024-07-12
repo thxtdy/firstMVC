@@ -134,7 +134,7 @@ button:hover {
 			<td><%= todo.getDueDate() %></td>
 			<td><%= todo.completedToString() == "true" ? "완료" : "미완료"%> </td>
 			<td>
-				<a href="detail?id=<%=todo.getId()%>">상세보기</a>
+				<a href="details?id=<%=todo.getId()%>">상세보기</a>
 				<form action="delete"method = "GET">
 					<input type="hidden" name="id" value="<%=todo.getId() %>">
 					<button type="submit">삭제</button>
